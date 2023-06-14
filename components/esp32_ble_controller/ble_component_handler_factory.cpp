@@ -3,6 +3,7 @@
 #include "ble_component_handler.h"
 #include "ble_fan_handler.h"
 #include "ble_sensor_handler.h"
+#include "ble_text_sensor_handler.h"
 #include "ble_switch_handler.h"
 
 namespace esphome {
@@ -46,7 +47,7 @@ BLEComponentHandlerBase* BLEComponentHandlerFactory::create_switch_handler(switc
 
 #ifdef USE_TEXT_SENSOR
 BLEComponentHandlerBase* esphome::esp32_ble_controller::BLEComponentHandlerFactory::create_text_sensor_handler(text_sensor::TextSensor* component, const BLECharacteristicInfoForHandler& characteristic_info) {
-  return create_component_handler(component, characteristic_info);    
+  return new BLETextSensorHandler(component, characteristic_info);    
 }
 #endif
 
